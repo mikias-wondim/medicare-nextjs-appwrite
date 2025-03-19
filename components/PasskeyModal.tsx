@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 import {
   AlertDialog,
@@ -27,22 +28,20 @@ export const PasskeyModal = () => {
   const [passkey, setPasskey] = useState("");
   const [error, setError] = useState("");
 
-  const encryptedKey =
-    typeof window !== "undefined"
-      ? window.localStorage.getItem("accessKey")
-      : null;
+  const encryptedKey = Cookies.get("accessKey"); // Get the cookie value
 
   useEffect(() => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
 
-    if (path)
+    if (path) {
       if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY!.toString()) {
         setOpen(false);
         router.push("/admin");
       } else {
         setOpen(true);
       }
-  }, [encryptedKey]);
+    }
+  }, [encryptedKey, path, router]);
 
   const closeModal = () => {
     setOpen(false);
@@ -57,9 +56,11 @@ export const PasskeyModal = () => {
     if (passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
       const encryptedKey = encryptKey(passkey);
 
-      localStorage.setItem("accessKey", encryptedKey);
+      // Set the cookie with an expiration of 1 day
+      Cookies.set("accessKey", encryptedKey, { expires: 1 });
 
       setOpen(false);
+      router.push("/admin"); // Redirect to admin page after successful validation
     } else {
       setError("Invalid passkey. Please try again.");
     }

@@ -1,9 +1,10 @@
 import { PatientForm } from "@/components/froms/PatientForm";
+import Logo from "@/components/Logo";
 import { PasskeyModal } from "@/components/PasskeyModal";
 import Image from "next/image";
 import Link from "next/link";
 
-const Home = async ({ searchParams }: SearchParamProps) => {
+const Home = async ({ searchParams }: any) => {
   const isAdmin = searchParams?.admin === "true";
 
   return (
@@ -19,21 +20,8 @@ const Home = async ({ searchParams }: SearchParamProps) => {
       />
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
-          <div className="w-full mb-12 flex gap-2 items-center justify-start">
-            <Image
-              src="/assets/icons/logo-full.png"
-              height={1000}
-              width={1000}
-              alt="logo"
-              className="h-14 w-fit"
-            />
-            <span className="text-2xl font-heading font-semibold">
-              MediCare
-            </span>
-          </div>
-
+          <Logo />
           <PatientForm />
-
           <div className="mt-20 flex justify-between">
             <p className="justify-items-end text-dark-600 xl:text-left">
               © {new Date().getFullYear()} CarePluse

@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { getPatient } from "@/lib/actions/patient.actions";
 import { AppointmentForm } from "@/components/froms/AppointmentForm";
+import Logo from "@/components/Logo";
 
-const Appointment = async ({ params }: { params: { userId: string } }) => {
+const Appointment = async ({ params }: any) => {
   // Await params before accessing userId
   const { userId } = await params; // This will ensure params are resolved properly
   const patient = await getPatient(userId);
@@ -11,18 +12,7 @@ const Appointment = async ({ params }: { params: { userId: string } }) => {
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[860px] flex-1 justify-between">
-          <div className="w-full mb-12 flex gap-2 items-center justify-start">
-            <Image
-              src="/assets/icons/logo-full.png"
-              height={1000}
-              width={1000}
-              alt="logo"
-              className="h-14 w-fit"
-            />
-            <span className="text-2xl font-heading font-semibold">
-              MediCare
-            </span>
-          </div>
+          <Logo />
 
           <AppointmentForm
             patientId={patient?.$id}

@@ -12,9 +12,12 @@ type FileUploaderProps = {
 };
 
 export const FileUploader = ({ files, onChange }: FileUploaderProps) => {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    onChange(acceptedFiles);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      onChange(acceptedFiles);
+    },
+    [onChange]
+  );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
@@ -30,7 +33,7 @@ export const FileUploader = ({ files, onChange }: FileUploaderProps) => {
           className="max-h-[400px] overflow-hidden object-cover"
         />
       ) : (
-        <>
+        <div className="flex flex-col items-center gap-2">
           <Image
             src="/assets/icons/upload.svg"
             width={40}
@@ -46,7 +49,7 @@ export const FileUploader = ({ files, onChange }: FileUploaderProps) => {
               SVG, PNG, JPG or GIF (max. 800x400px)
             </p>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
