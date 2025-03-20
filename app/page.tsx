@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Home = async ({ searchParams }: any) => {
-  const isAdmin = searchParams?.admin === "true";
+  const params = await searchParams;
+  const isAdmin = params?.admin === "true";
 
   return (
     <div className="flex h-screen max-h-screen">

@@ -21,6 +21,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { decryptKey } from "@/lib/utils";
+import Cookies from "js-cookie";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -32,9 +33,7 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const encryptedKey =
-    typeof window !== "undefined"
-      ? window.localStorage.getItem("accessKey")
-      : null;
+    typeof window !== "undefined" ? Cookies.get("accessKey") : null;
 
   useEffect(() => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);

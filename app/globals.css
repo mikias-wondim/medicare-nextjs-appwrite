@@ -318,7 +318,7 @@
 /* ===== ADMIN */
 @utility admin-header {
   @layer base {
-    @apply sticky top-2 z-20 mx-[10%] flex items-center justify-between rounded-2xl  px-[5%] py-4 xl:px-12;
+    @apply  mx-[10%] flex items-center justify-between rounded-2xl  px-[5%] py-4 xl:px-12;
   }
 }
 

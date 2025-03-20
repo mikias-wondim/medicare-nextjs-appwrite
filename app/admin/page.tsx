@@ -10,8 +10,8 @@ const AdminPage = async () => {
   const appointments = await getRecentAppointmentList();
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col space-y-14">
-      <header className="admin-header max-w-[90%]">
+    <div className="mx-auto flex max-w-7xl flex-col space-y-14 ">
+      <header className="admin-header bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex justify-start">
           <Link href="/" className="flex gap-2 items-center cursor-pointer">
             <Image
